@@ -1,0 +1,516 @@
+/* Import macOS-like system font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* CSS Variables for Dark Mode */
+:root {
+    --background-color: #1e1e2f;
+    --header-background: #2c2c3e;
+    --form-background: #2c2c3e;
+    --note-background: #3a3a4d;
+    --text-color: #e0e0e0;
+    --title-color: #ffffff;
+    --border-color: #444444;
+    --button-background: #007aff;
+    --button-hover: #0051a8;
+    --error-color: #ff6b6b;
+    --logout-background: #3a3a4d;
+    --logout-hover: #555566;
+    --pinned-background: #3a3a4d;
+    --pinned-border: #555566;
+    --note-border: #555566;
+}
+
+/* General Styles */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--background-color); /* Dark background */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    color: var(--text-color); /* Light text for contrast */
+}
+
+/* Header Styling */
+.header {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    background: linear-gradient(180deg, var(--header-background), #1e1e2f); /* Dark gradient */
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+}
+
+.header h1 {
+    font-size: 24px;
+    margin: 0;
+    color: var(--title-color); /* White text */
+}
+
+.header img {
+    margin-left: 15px;
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Login Form Styling */
+.login-form {
+    width: 350px;
+    padding: 30px 25px;
+    background-color: var(--form-background); /* Dark form background */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.login-form h2 {
+    margin-bottom: 20px;
+    color: var(--title-color); /* White text */
+    font-weight: 500;
+}
+
+.login-form input[type="password"] {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color); /* Darker border */
+    border-radius: 8px;
+    margin-bottom: 15px;
+    width: 90%;
+    font-size: 16px;
+    background-color: #3a3a4d; /* Dark input background */
+    color: var(--text-color); /* Light text */
+    transition: border-color 0.3s;
+}
+
+.login-form input[type="password"]:focus {
+    border-color: var(--button-background); /* macOS blue */
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 122, 255, 0.5);
+}
+
+.login-form button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--button-background); /* macOS blue */
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+    width: 100%;
+}
+
+.login-form button:hover {
+    background-color: var(--button-hover);
+}
+
+.login-form .error {
+    color: var(--error-color); /* Light red for errors */
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* Logout Button Styling */
+.logout-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background-color: var(--logout-background); /* Darker background */
+    color: var(--text-color); /* Light text */
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.logout-button:hover {
+    background-color: var(--logout-hover); /* Slightly lighter on hover */
+    transform: translateY(-2px);
+}
+
+/* Note Form Styling */
+form {
+    margin: 20px 0;
+    width: 90%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    padding: 20px 25px;
+    background-color: var(--form-background); /* Dark form background */
+    border-radius: 12px;
+}
+
+form input[type="text"], form textarea {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color); /* Darker border */
+    border-radius: 8px;
+    margin-bottom: 15px;
+    resize: vertical;
+    font-size: 16px;
+    background-color: #3a3a4d; /* Dark input background */
+    color: var(--text-color); /* Light text */
+    transition: border-color 0.3s;
+}
+
+form input[type="text"]:focus, form textarea:focus {
+    border-color: var(--button-background); /* macOS blue */
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 122, 255, 0.5);
+}
+
+form button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--button-background); /* macOS blue */
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+form button:hover {
+    background-color: var(--button-hover);
+}
+
+/* Notes Section Styling */
+.notes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive columns */
+    gap: 20px;
+    padding: 10px;
+}
+
+.pinned-notes-container, .all-notes-container {
+    width: 90%;
+    max-width: 1200px;
+    margin-bottom: 40px;
+}
+
+.pinned-notes-container h2, .all-notes-container h2 {
+    color: var(--text-color); /* Light text */
+    margin-bottom: 20px;
+    font-size: 20px;
+    border-bottom: 2px solid var(--border-color); /* Darker border */
+    padding-bottom: 5px;
+}
+
+.pinned-notes {
+    background-color: var(--pinned-background); /* Dark pinned notes background */
+    border: 1px solid var(--pinned-border); /* Dark border */
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 20px; /* Space between notes */
+}
+
+.pinned-notes::-webkit-scrollbar {
+    height: 8px;
+}
+
+.pinned-notes::-webkit-scrollbar-track {
+    background: #2c2c3e; 
+    border-radius: 4px;
+}
+
+.pinned-notes::-webkit-scrollbar-thumb {
+    background: #555566; 
+    border-radius: 4px;
+}
+
+.pinned-notes::-webkit-scrollbar-thumb:hover {
+    background: #777788; 
+}
+
+.all-notes {
+    background-color: var(--form-background); /* Dark all notes background */
+    border: 1px solid var(--border-color); /* Dark border */
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* Note Styling */
+.note {
+    background: var(--note-background); /* Dark note background */
+    padding: 20px;
+    border: 1px solid var(--note-border); /* Dark border */
+    border-radius: 12px;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 250px; /* Ensure minimum width for horizontal scrolling */
+}
+
+.note:last-child {
+    margin-right: 0; /* Remove margin from the last note */
+}
+
+.note:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+}
+
+.note h2, .note p {
+    margin: 0;
+    word-wrap: break-word;
+    font-size: 16px;
+}
+
+.note h2 {
+    font-weight: 500;
+    color: var(--title-color); /* White title */
+    margin-bottom: 10px;
+}
+
+.note p {
+    flex-grow: 1;
+    color: var(--text-color); /* Light text */
+    line-height: 1.5;
+    position: relative;
+}
+
+.note p::after {
+    content: '';
+    display: block;
+    height: 1em;
+    background: linear-gradient(to top, var(--header-background), rgba(44, 44, 62, 0));
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.note .actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.note .actions a, .note .actions span {
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    margin: 2px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
+    display: inline-block;
+}
+
+.note .actions .copy {
+    background-color: #8e24aa;
+    color: white;
+}
+
+.note .actions .copy:hover {
+    background-color: #7b1fa2;
+    transform: scale(1.05);
+}
+
+.note .actions .edit {
+    background-color: #ffb300;
+    color: white;
+}
+
+.note .actions .edit:hover {
+    background-color: #ffa000;
+    transform: scale(1.05);
+}
+
+.note .actions .save {
+    background-color: #43a047;
+    color: white;
+    display: none;
+}
+
+.note .actions .save:hover {
+    background-color: #388e3c;
+    transform: scale(1.05);
+}
+
+.note .actions .cancel {
+    background-color: #e53935;
+    color: white;
+    display: none;
+}
+
+.note .actions .cancel:hover {
+    background-color: #d32f2f;
+    transform: scale(1.05);
+}
+
+.note .actions .pin {
+    background-color: #007aff;
+    color: white;
+}
+
+.note .actions .pin:hover {
+    background-color: #0051a8;
+    transform: scale(1.05);
+}
+
+.note .actions .delete {
+    background-color: #e53935;
+    color: white;
+}
+
+.note .actions .delete:hover {
+    background-color: #d32f2f;
+    transform: scale(1.05);
+}
+
+/* Copy Message Styling */
+.copy-message {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: rgba(67, 160, 71, 0.9); /* Semi-transparent green */
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    font-size: 14px;
+    animation: fadeInOut 3s forwards;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Responsive Design: Adjust layouts for smaller screens */
+@media (max-width: 768px) {
+    /* Header adjustments */
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header img {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    /* Logout button adjustments */
+    .logout-button {
+        top: auto;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    /* Form adjustments */
+    form {
+        padding: 15px 20px;
+    }
+
+    form input[type="text"], form textarea {
+        font-size: 18px;
+    }
+
+    form button {
+        font-size: 18px;
+        padding: 14px 22px;
+    }
+
+    /* Pinned notes adjustments */
+    .pinned-notes {
+        gap: 15px;
+    }
+
+    .note {
+        min-width: 200px;
+        padding: 15px;
+    }
+
+    .note h2 {
+        font-size: 18px;
+    }
+
+    .note p {
+        font-size: 16px;
+    }
+
+    /* All notes adjustments */
+    .all-notes {
+        padding: 10px;
+    }
+
+    /* Copy message positioning */
+    .copy-message {
+        bottom: 20px;
+        right: 20px;
+        font-size: 16px;
+        padding: 10px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Further adjustments for very small screens */
+
+    /* Header adjustments */
+    .header h1 {
+        font-size: 20px;
+    }
+
+    .header img {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Form adjustments */
+    form input[type="text"], form textarea {
+        font-size: 16px;
+    }
+
+    form button {
+        font-size: 16px;
+        padding: 12px 18px;
+    }
+
+    /* Pinned notes adjustments */
+    .pinned-notes {
+        gap: 10px;
+    }
+
+    .note {
+        min-width: 160px;
+        padding: 12px;
+    }
+
+    .note h2 {
+        font-size: 16px;
+    }
+
+    .note p {
+        font-size: 14px;
+    }
+
+    /* Copy message positioning */
+    .copy-message {
+        bottom: 15px;
+        right: 15px;
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+}
